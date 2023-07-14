@@ -1,4 +1,4 @@
-using BulkyBookShopWeb.Data;
+using BulkyBookShop.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 

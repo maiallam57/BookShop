@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace BulkyBookShopWeb.Migrations
+namespace BulkyBookShop.DataAccess.Migrations
 {
     public partial class Identity : Migration
     {

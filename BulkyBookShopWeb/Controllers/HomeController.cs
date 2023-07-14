@@ -1,4 +1,4 @@
-﻿using BulkyBookShopWeb.Models;
+﻿using BulkyBookShop.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
