@@ -1,0 +1,30 @@
+﻿@model BulkyBookShop.Models.CoverType
+
+<form method="post">
+    <div class="border border-secondary rounded bg-active p-3 mt-4">
+    <div class="row pb-2">
+        <h2 class="text-primary my-2">Create CoverType</h2>
+        <hr />
+    </div>
+
+@*    <div asp-validation-summary="All"> </div>  
+*@
+
+    
+    <div class="mb-3">
+        <label asp-for="Name"  class="col-form-label mt-2"></label>
+        <input asp-for="Name" class="form-control" placeholder="CoverType Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-4" style="width:165px">Create</button>
+    <a asp-controller="CoverType" asp-action="Index" class="btn btn-secondary mt-4" style="width:165px">
+        Back To List
+    </a>
+
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
