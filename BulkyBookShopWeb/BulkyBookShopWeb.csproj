@@ -20,13 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Controllers\" />
-    <Folder Include="Areas\Admin\Views\" />
-    <Folder Include="Areas\Customer\Controllers\" />
-    <Folder Include="Areas\Customer\Views\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BulkyBookShop.DataAccess\BulkyBookShop.DataAccess.csproj" />
     <ProjectReference Include="..\BulkyBookShop.Models\BulkyBookShop.Models.csproj" />
     <ProjectReference Include="..\BulkyBookShop.Utility\BulkyBookShop.Utility.csproj" />

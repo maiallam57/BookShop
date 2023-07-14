@@ -3,11 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BulkyBookShopWeb</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/BulkyBookShopWeb.styles.css" asp-append-version="true" />
-
+    <title>@ViewData["Title"] - BulkyBookWeb</title>
     <link rel="stylesheet" href="~/css/bootswatchTheme.css" />
     <link rel="stylesheet" href="~/css/errorStyle.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -19,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand:700|Roboto:400,400i,700&display=swap" rel="stylesheet">
 </head>
 <body>
-     <header>
+    <header>
         <nav class="navbar navbar-expand-lg fixed-top bg-primary" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">BulkyBook</a>
@@ -60,23 +56,62 @@
     <br />
     <br />
     <br />
-    <br />
 
     <div class="container">
         <main role="main" class="pb-3">
+            @section Scripts{
+                <partial name="_Notification" />    
+            }
             @RenderBody()
         </main>
     </div>
 
-    <footer class="footer bg-primary text-light fixed-bottom">
-        <div class="container">
-            &copy; 2023 - BulkyBookShopWeb @*- <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>*@
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
 
+    
+    <br />
+    <br />
+    <br />
+
+<!-- Footer -->
+<footer class="bg-primary text-center text-white fixed-bottom">
+    <!-- Grid container -->
+     @*<div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+       <section class="mb-4">
+            <!-- Facebook -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+
+            <!-- Twitter -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+
+            <!-- Google -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+
+            <!-- Linkedin -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+
+            <!-- Github -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
+        </section>
+        <!-- Section: Social media -->
+    </div>*@
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        &copy; 2023 - BulkyBookWeb
+         @*<a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>*@
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script src="~/js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script> <!-- dataTables -->
@@ -86,4 +121,6 @@
     <script defer src="~/js/homeMain.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
+
 </html>
