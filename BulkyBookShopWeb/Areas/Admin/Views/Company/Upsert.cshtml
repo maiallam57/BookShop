@@ -1,0 +1,73 @@
+﻿@model BulkyBookShop.Models.Company
+
+<form method="post" asp-action= "Upsert" enctype="multipart/form-data"> @*to upload*@
+    <input asp-for="Id" hidden />
+
+    <div class="row">
+         <div class="col-12">
+            <div class="border border-secondary rounded bg-active p-3 mt-4 row">
+            <div class="row pb-2">
+                <h2 class="text-primary my-2">@(Model.Id!=0?"Update": "Create") Company</h2>
+                <hr />
+            </div>
+
+            @*    <div asp-validation-summary="All"> </div>   *@
+
+    
+            <div class="mb-3">
+                <label asp-for="Name"  class="col-form-label mt-2"></label>
+                <input asp-for="Name" class="form-control" placeholder="Company Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div> 
+            <div class="mb-3">
+                <label asp-for="StreetAddress"  class="col-form-label mt-2"></label>
+                <input asp-for="StreetAddress" class="form-control" placeholder="Street Address.." />
+                <span asp-validation-for="StreetAddress" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="City"  class="col-form-label mt-2"></label>
+                <input asp-for="City" class="form-control" placeholder="City" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="State"  class="col-form-label mt-2"></label>
+                <input asp-for="State" class="form-control" placeholder="State" />
+                <span asp-validation-for="State" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="PostalCode"  class="col-form-label mt-2"></label>
+                <input asp-for="PostalCode" class="form-control" />
+                <span asp-validation-for="PostalCode" class="text-danger"></span>
+            </div> 
+            <div class="mb-3">
+                <label asp-for="PhoneNumber"  class="col-form-label mt-2"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>    
+            
+
+            <div class="col-12">
+                @if(Model.Id!=0){
+                    <button type="submit" class="btn btn-primary mt-4" style="width:165px">Update</button>
+                }
+                else{
+                    <button type="submit" class="btn btn-primary mt-4" style="width:165px">Create</button>
+                }
+            <a asp-controller="Company" asp-action="Index" class="btn btn-secondary mt-4" style="width:165px">
+                Back To Companies
+            </a>
+            </div>
+            </div>
+        </div>        
+    </div>
+   </div>
+
+</form>
+
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial" />
+    }
+
+}

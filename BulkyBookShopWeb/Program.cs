@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using BulkyBookShop.DataAccess.Repository;
 using BulkyBookShop.DataAccess.Repository.IRepository;
+using BulkyBookShop.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 

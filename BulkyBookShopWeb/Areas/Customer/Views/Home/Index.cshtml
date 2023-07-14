@@ -1,8 +1,145 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<BulkyBookShop.Models.Product>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<br />
+<br />
+<br />
+    <section class=" mt-6">
+	    <div class="container  mt-4">
+		    <div class="row">
+			    <div class="col-12 col-md-7  mb-5 align-self-center">
+				    <div class="promo pe-md-3 pe-lg-5">
+					    <h1 class="headline mb-3">
+						    Free Book &amp; eBook <br>Landing Page Template   
+					    </h1><!--//headline-->
+					    <div class="subheadline mb-4">
+						    A free Bootstrap 5 template for developers and programmers who want to self-publish books. Download now and start selling your book right away!
+						    
+					    </div><!--//subheading-->
+					    
+					    <div class="cta-holder row gx-md-3 gy-3 gy-md-0">
+						    <div class="col-12 col-md-auto">
+						        <a class="btn btn-primary w-100" href="">Buy for $39</a>
+						    </div>
+						    <div class="col-12 col-md-auto">
+						        <a class="btn btn-secondary scrollto w-100" href="#benefits-section">Learn More</a>
+						    </div>
+					    </div><!--//cta-holder-->
+					    
+					    <div class="hero-quotes mt-5">
+						    <div id="quotes-carousel" class="quotes-carousel carousel slide carousel-fade mb-5 pt-5" data-bs-ride="carousel" data-bs-interval="8000">
+								<div class="carousel-indicators">
+									<button type="button" data-bs-target="#quotes-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+									<button type="button" data-bs-target="#quotes-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+									<button type="button" data-bs-target="#quotes-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+								</div>
+							  
+							    <div class="carousel-inner">
+								    <div class="carousel-item active">
+								        <blockquote class="p-4 bg-light quote">
+									        "Excellent Book! Add your book reviews here consectetur adipiscing elit. Aliquam euismod nunc porta urna facilisis tempor. Praesent mauris neque, viverra quis erat vitae, auctor imperdiet nisi."     
+								        </blockquote><!--//item-->
+								        <div class="source row gx-md-3 gy-3 gy-md-0 align-items-center">
+									        <div class="col-12 col-md-auto text-center text-md-start">
+									            <img class="source-profile rounded-5" src="/images/home/profile-1.jpeg" alt="image" >
+									        </div><!--//col-->
+									        <div class="col source-info text-center text-md-start">
+										        <div class="source-name">Mai Allam</div>
+										        <div class="soure-title">Co-Founder, Startup Week</div>
+										    </div><!--//col-->
+								        </div><!--//source-->
+								    </div><!--//carousel-item-->
+								    <div class="carousel-item">
+								        <blockquote class="p-4 bg-light quote">
+									        "Highly recommended consectetur adipiscing elit. Proin et auctor dolor, sed venenatis massa. Vestibulum ullamcorper lobortis nisi non placerat praesent mauris neque"     
+								        </blockquote><!--//item-->
+								        <div class="source row gx-md-3 gy-3 gy-md-0 align-items-center">
+									        <div class="col-12 col-md-auto text-center text-md-start">
+									            <img class="source-profile rounded-5" src="/images/home/profile-2.jpg" alt="image" >
+									        </div><!--//col-->
+									        <div class="col source-info text-center text-md-start">
+										        <div class="source-name">Mai</div>
+										        <div class="soure-title">Co-Founder, Startup Week</div>
+										    </div><!--//col-->
+								        </div><!--//source-->
+								    </div><!--//carousel-item-->
+								    <div class="carousel-item">
+								        <blockquote class="p-4 bg-light quote">
+									        "Awesome! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam euismod nunc porta urna facilisis tempor. Praesent mauris neque, viverra quis erat vitae."     
+								        </blockquote><!--//item-->
+								        <div class="source row gx-md-3 gy-3 gy-md-0 align-items-center">
+									        <div class="col-12 col-md-auto text-center text-md-start">
+									            <img class="source-profile rounded-5" src="/images/home/profile-3.jpeg" alt="image" >
+									        </div><!--//col-->
+									        <div class="col source-info text-center text-md-start">
+										        <div class="source-name">Mai Allam</div>
+										        <div class="soure-title">Backend Developer, Company Lorem</div>
+										    </div><!--//col-->
+								        </div><!--//source-->
+								    </div><!--//carousel-item-->
+								</div><!--//carousel-inner-->
+							</div><!--//quotes-carousel-->
+							
+					    </div><!--//hero-quotes-->
+				    </div><!--//promo-->
+			    </div><!--col-->
+			    <div class="col-12 col-md-5 mb-5 align-self-center">
+				    <div class="book-cover-holder">
+					    <img class="img-fluid book-cover" src="/images/home/devbook-cover.png" alt="book cover" style="height:700px; width=100%;" >
+					    <div class="book-badge d-inline-block shadow">
+						    New<br>Release
+					    </div>
+				    </div><!--//book-cover-holder-->
+			    </div><!--col-->
+		    </div><!--//row-->
+	    </div><!--//container-->
+    </section><!--//hero-section-->
+
+	<br />
+	<section class="border-top"></section>
+
+ <h2 class="card-title text-center my-3">Shop Now</h2>
+
+<section class="border-top">
+<br />
+<br />
+
+<div class="row pb-3">
+    @foreach (var product in Model)
+    {
+        <div class="col-lg-3 col-md-6">
+            <div class="row p-2">
+                <div class="col-12 p-1" style="border:1px solid #abb2b9; border-radius:5px;  width: 100%;">
+                <div class="card">
+                    <div>
+                    @if (product.ProductImage != null)
+                    {
+                        <img id="productImage" alt="Product Image" src="data:image/*;base64,@(Convert.ToBase64String(product.ProductImage))" class="card-img rounded" style="width: 100%; height: 300px; object-fit: cover;"/>
+                    }
+					else{
+                       <img id="productImage" alt="Product Image" src="/images/products/noImage.png" class="card-img rounded" style="object-fit: cover;"/>
+                    }
+                    </div>
+                    <div class="card-body">
+                    <div class="pl-1">
+                        <p class="card-title h5 text-primary">@product.Title</p>
+                        <p class="card-title text-info">By @product.Author</p>
+                    </div>
+                    <div class="pl-1">
+                        <p style="font-size:16px;">As low as: <b Class="text-danger"> $@product.Price.ToString("0.00")</b></p>
+                    </div>
+                    <div class="pl-1">
+                        <p style="font-size:14px;">List Price: <strike class="text-secondary"><b>$@product.ListPrice.ToString("0.00")</b></strike></p>
+                    </div>
+                    </div>
+                </div>
+                <div>
+                    <a asp-action="Details" class="btn btn-primary form-control" asp-route-id="@product.Id">Details</a>
+                </div>
+                </div>
+            </div>
+			<br />
+        </div>
+    }
 </div>
+
+</section>

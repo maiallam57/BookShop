@@ -22,40 +22,6 @@ namespace BulkyBookShopWeb.Controllers
             return View();
         }
 
-        //Create
-        //GET ACTION METHOD
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        //POST ACTION METHOD
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(Product obj)
-        {
-            //Custom Validation
-            var Products = _unitOfWork.Product.GetAll();
-            foreach (string Title in Products.Select(x => x.Title).ToList())
-            {
-                if (Title.ToLower() == obj.Title.ToLower())
-                {
-                    ModelState.AddModelError("name", "The product name is already exists.");
-                }
-
-            }
-            //server side Validation
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Product.Add(obj);
-                _unitOfWork.Save();                  //To be added and saved to the database
-                TempData["success"] = "Product Created Successfully";
-                return RedirectToAction("Index");   //Instead of directing it io a view,  we Redirect it to Action "Index"
-            }
-            return View(obj);
-           
-        }
-
         //Edit
         //GET ACTION METHOD
         public IActionResult Upsert(int? id)
@@ -124,13 +90,15 @@ namespace BulkyBookShopWeb.Controllers
                 if (obj.Product.Id == 0)
                 {
                     _unitOfWork.Product.Add(obj.Product);
+                    TempData["success"] = "Product Created Successfully";
+
                 }
                 else
                 {
                     _unitOfWork.Product.Update(obj.Product);
+                    TempData["success"] = "Product Updated Successfully";
                 }
                 _unitOfWork.Save();                  //To be added and saved to the database
-                TempData["success"] = "Product Updated Successfully";
                 return RedirectToAction("Index");   //Instead of directing it io a view,  we Redirect it to Action "Index"
             }
             return View(obj);
@@ -155,11 +123,6 @@ namespace BulkyBookShopWeb.Controllers
             {
                 return Json(new { success = false, message = " Error while Deleting!" });
             }
-            //var oldImagePath = Path.Combine(_hostEnvironment.WebRootPath, obj.ProductImage.TrimStart('\\'));
-            //if (System.IO.File.Exists(oldImagePath))
-            //{
-            //    System.IO.File.Delete(oldImagePath);
-            //}
             _unitOfWork.Product.Remove(obj);
             _unitOfWork.Save();                  //To be added and saved to the database
             return Json(new { success = true, message = " Product Deleted successfully " });

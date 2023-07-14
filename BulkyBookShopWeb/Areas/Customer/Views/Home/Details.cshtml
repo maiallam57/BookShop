@@ -1,0 +1,100 @@
+﻿@model BulkyBookShop.Models.ShoppingCart
+
+<form method="post">
+
+<input hidden asp-for="Product.Id" />
+<section class="py-5">
+    <div class="card container">
+        <div class="card-header bg-primary text-light ml-0 row">
+            <div class="col-12 col-md-6">
+                <h1 class="text-white-50">@Model.Product.Title</h1>
+                <p class="text-warning">by @Model.Product.Author</p>
+            </div>
+            <div class="col-12 col-md-6 text-end pt-4">
+                <span class="badge bg-info pt-2" style="height:30px;">@Model.Product.CoverType.Name</span>
+                <span class="badge bg-warning pt-2" style="height:30px;">@Model.Product.Category.Name</span>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="container rounded p-2">
+                <div class="row">
+                    <div class="col-8 col-lg-8">
+
+                        <div class="row pl-2">
+                            <h5 class="text-muted">ISBN : @Model.Product.ISNB</h5>
+                        </div>
+                        <div class="row pl-2">
+                            <h5 class="text-muted pb-2">List Price: <strike> @Model.Product.ListPrice.ToString("c")</strike></h5>
+                        </div>
+                        <div class="row text-center pl-2">
+                            <div class="p-1 col-2 bg-active border-top border-bottom border-left">
+                                <div>Quantity</div>
+                            </div>
+                            <div class="p-1 col-2 bg-active border-top border-bottom">
+                                <div>1-49</div>
+                            </div>
+                            <div class="p-1 col-2 bg-active border-top border-bottom">
+                                <div>50-99</div>
+                            </div>
+                            <div class="p-1 col-2 bg-active border-top border-bottom border-right">
+                                <div>100+</div>
+                            </div>
+                        </div>
+                        <div class="row text-center pl-2" style="color:maroon; font-weight:bold">
+                            <div class="p-1 col-2 bg-active border-bottom border-left">
+                                <div>Price</div>
+                            </div>
+                            <div class="p-1 col-2 bg-active border-bottom">
+                                <div>@Model.Product.Price.ToString("c")</div>
+                            </div>
+                            <div class="p-1 col-2 bg-active border-bottom">
+                                <div>@Model.Product.Price50.ToString("c")</div>
+                            </div>
+                            <div class="p-1 col-2 bg-active border-bottom border-right">
+                                <div>@Model.Product.Price100.ToString("c")</div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row pl-2">
+                            <p class="text-secondary">@Model.Product.Description</p>
+                        </div>
+                        <br>
+                        <div class="row pl-2">
+                            <div class="col-2 text-primary"><h4>Count</h4></div>
+                            <div class="col-10"><input asp-for="Count" class="form-control" style="width:60%;" /></div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3 offset-lg-1 text-center">
+                        @if (Model.Product.ProductImage != null)
+                        {
+                            <img id="productImage" alt="Product Image" src="data:image/*;base64,@(Convert.ToBase64String(Model.Product.ProductImage))" style="width: 100%; height: 300px; object-fit: cover;" class="rounded"/>
+                        }
+                        else{
+                            <img id="productImage" alt="Product Image" src="/images/products/noImage.png" style="border:1px solid; width: 100%; height: 300px; object-fit: cover;" class="rounded"/>
+                        }
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-12 col-md-6 pb-1">
+                    <a class="btn btn-secondary form-control  btn-square btn-lg" style="height:50px;" asp-action="Index">Back to Home</a>
+                </div>
+                <div class="col-12 col-md-6 pb-1">
+
+                    <button type="submit" value="Add to Cart" class="btn btn-primary btn-square btn-lg form-control" style="height:50px;">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" fill="currentColor" class="bi bi-basket2" viewBox="0 0 16 16">
+                          <path d="M4 10a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0v-2zm3 0a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0v-2zm3 0a1 1 0 1 1 2 0v2a1 1 0 0 1-2 0v-2z"/>
+                          <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-.623l-1.844 6.456a.75.75 0 0 1-.722.544H3.69a.75.75 0 0 1-.722-.544L1.123 8H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM2.163 8l1.714 6h8.246l1.714-6H2.163z"/>
+                        </svg>&nbsp; Add to Cart</button>
+                         
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+</form>
