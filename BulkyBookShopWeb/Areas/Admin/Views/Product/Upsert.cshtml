@@ -3,7 +3,6 @@
 <form method="post" asp-action= "Upsert" enctype="multipart/form-data"> @*to upload*@
     <input asp-for="Product.Id" hidden />
     <input id="uploaded" hidden type="file" asp-for="Product.ProductImage" name="file"/>
-
     <div class="row">
          <div class="col-8">
           
@@ -101,7 +100,7 @@
             <br />
             <input id="uploaded" type="file" accept="image/*" asp-for="Product.ProductImage" name="file" class="form-control" 
             onchange="document.getElementById('productImage').src = window.URL.createObjectURL(this.files[0])"/>
-            <span asp-validation-for="Product.ProductImage" class="text-danger"> Please upload an image!</span>
+            <span asp-validation-for="Product.ProductImage" class="text-danger"></span>
         </div>
         
     </div>

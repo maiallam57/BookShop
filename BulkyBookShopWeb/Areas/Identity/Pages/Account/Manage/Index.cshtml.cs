@@ -6,9 +6,13 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using BulkyBookShop.Models;
+using BulkyBookShop.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BulkyBookShopWeb.Areas.Identity.Pages.Account.Manage
 {
@@ -58,19 +62,35 @@ namespace BulkyBookShopWeb.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            public string Name { get; set; }
+
+            [Display(Name = "Street Address")]
+            public string? StreetAddress { get; set; }
+            public string? City { get; set; }
+            public string? State { get; set; }
+
+            [Display(Name = "Postal Code")]
+            public string? PostalCode { get; set; }
+
         }
 
-        private async Task LoadAsync(IdentityUser user)
+        private async Task LoadAsync(ApplicationUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+
 
             Username = userName;
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
-            };
+                Name = user.Name,
+                StreetAddress = user.StreetAddress,
+                PhoneNumber = phoneNumber,
+                City = user.City,
+                State = user.State,
+                PostalCode = user.PostalCode
+        };
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -81,7 +101,7 @@ namespace BulkyBookShopWeb.Areas.Identity.Pages.Account.Manage
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            await LoadAsync(user);
+            await LoadAsync((ApplicationUser)user);
             return Page();
         }
 
@@ -95,7 +115,7 @@ namespace BulkyBookShopWeb.Areas.Identity.Pages.Account.Manage
 
             if (!ModelState.IsValid)
             {
-                await LoadAsync(user);
+                await LoadAsync((ApplicationUser)user);
                 return Page();
             }
 

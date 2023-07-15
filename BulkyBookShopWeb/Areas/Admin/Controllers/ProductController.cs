@@ -81,7 +81,7 @@ namespace BulkyBookShopWeb.Controllers
                     }
                 }
                 
-                if (Request.Form.Files.Count <= 0)
+                if(obj.Product.ProductImage == null)
                 {
                     TempData["error"] = "Please upload an image for the product! ";
                     return View(obj);
