@@ -1,6 +1,7 @@
 ﻿using BulkyBookShop.DataAccess.Repository.IRepository;
 using BulkyBookShop.Models;
 using BulkyBookShop.Models.ViewModels;
+using BulkyBookShop.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -34,7 +35,10 @@ namespace BulkyBookShopWeb.Controllers
             {
                 cart.Price = GetPriceBasedOnQuantity(cart.Count, cart.Product.Price,
                     cart.Product.Price50, cart.Product.Price100);
+                ShoppingCartVM.Subtotal += (cart.Price * cart.Count);
             }
+            ShoppingCartVM.ShippingFee = SD.shippingFee;
+            ShoppingCartVM.CartTotal = (ShoppingCartVM.Subtotal+ ShoppingCartVM.ShippingFee);
             return View(ShoppingCartVM);
         }
 
