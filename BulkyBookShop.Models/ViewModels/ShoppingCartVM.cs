@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 
 namespace BulkyBookShop.Models.ViewModels
 {
-    public class ShoppingCartVM
+    public class ProductVM
     {
-        public ShoppingCart ShoppingCart { get; set; }
-        //To get all ShoppingCarts
+        public Product Product { get; set; }
+        //To get all categories and CoverTypes
 
         [ValidateNever]
-        public IEnumerable<ShoppingCart> ListCart { get; set; }
-
+        public IEnumerable<SelectListItem> CategoryList { get; set; }
+        [ValidateNever]
+        public IEnumerable<SelectListItem> CoverTypeList { get; set; }
     }
 }

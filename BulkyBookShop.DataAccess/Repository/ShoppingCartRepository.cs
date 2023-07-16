@@ -1,4 +1,5 @@
-﻿using BulkyBookShop.DataAccess.Repository.IRepository;
+﻿using BulkyBookshop.DataAccess.Repository;
+using BulkyBookShop.DataAccess.Repository.IRepository;
 using BulkyBookShop.Models;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace BulkyBookShop.DataAccess.Repository
 {
     public class ShoppingCartRepository : Repository<ShoppingCart>, IShoppingCartRepository
     {
-        private readonly ApplicationDbContext _db;
+        private ApplicationDbContext _db;
 
         public ShoppingCartRepository(ApplicationDbContext db) : base(db)
         {

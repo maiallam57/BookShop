@@ -1,5 +1,6 @@
 ﻿using BulkyBookShop.DataAccess.Repository.IRepository;
 using BulkyBookShop.Models;
+using BulkyBookShop.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -8,68 +9,53 @@ using System.Security.Claims;
 namespace BulkyBookShopWeb.Controllers
 {
     [Area("Customer")]
+    [Authorize]
     public class CartController : Controller
     {
-        private readonly ILogger<CartController> _logger;
         private readonly IUnitOfWork _unitOfWork;
 
-        public CartController(ILogger<CartController> logger, IUnitOfWork unitOfWork)
+        public ShoppingCartVM ShoppingCartVM { get; set; }
+        public double OrderTotal { get; set; }
+        public CartController(IUnitOfWork unitOfWork)
         {
-            _logger = logger;
             _unitOfWork = unitOfWork;
         }
-
         public IActionResult Index()
-        {
-            IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category,CoverType");
-            return View(productList);
-        }
-
-        public IActionResult Details(int productId)
-        {
-            ShoppingCart cartObj = new()
-            {
-                Count = 1,
-                ProductId = productId,
-                Product = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == productId, includeProperties: "Category,CoverType")
-            };
-            return View(cartObj);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize]
-        public IActionResult Details(ShoppingCart shoppingCart)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            shoppingCart.ApplicationUserId = claim.Value;
 
-            ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.GetFirstOrDefault(
-            u => u.ApplicationUserId == claim.Value && u.ProductId == shoppingCart.ProductId);
-
-            if (cartFromDb == null)
+            ShoppingCartVM = new ShoppingCartVM()
             {
-                _unitOfWork.ShoppingCart.Add(shoppingCart);                
+                ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
+                includeProperties: "Product"),
+            };
+            foreach (var cart in ShoppingCartVM.ListCart)
+            {
+                cart.Price = GetPriceBasedOnQuantity(cart.Count, cart.Product.Price,
+                    cart.Product.Price50, cart.Product.Price100);
+            }
+            return View(ShoppingCartVM);
+        }
+
+
+        private double GetPriceBasedOnQuantity(double quantity, double price, double price50, double price100)
+        {
+            if (quantity <= 50)
+            {
+                return price;
             }
             else
             {
-                _unitOfWork.ShoppingCart.IncrementCount(cartFromDb, shoppingCart.Count);
+                if (quantity <= 100)
+                {
+                    return price50;
+                }
+                return price100;
             }
-            _unitOfWork.Save();
-            return RedirectToAction(nameof(Index));
         }
 
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
+
+       

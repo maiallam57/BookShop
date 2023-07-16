@@ -1,4 +1,5 @@
-﻿using BulkyBookShop.DataAccess.Repository.IRepository;
+﻿using BulkyBookshop.DataAccess.Repository;
+using BulkyBookShop.DataAccess.Repository.IRepository;
 using BulkyBookShop.Models;
 using System;
 using System.Collections.Generic;
