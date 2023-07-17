@@ -13,9 +13,9 @@ namespace BulkyBookShop.Models.ViewModels
     {
         public IEnumerable<ShoppingCart> ListCart { get; set; }
 
-        public double CartTotal { get; set; }
-        public double Subtotal { get; set; }
-        public int ShippingFee { get; set; }
+        public OrderHeader OrderHeader { get; set; }
+        public OrderDetail OrderDetail { get; set; }
+
 
     }
 }
