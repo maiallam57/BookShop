@@ -244,6 +244,7 @@
 							{
 								if (Model.OrderHeader.OrderStatus == SD.StatusApproved)
 								{
+									<input type="submit" asp-action="StartProcessing" class="btn btn-primary form-control my-1" value="Start Processing" />
 								}
 								if (Model.OrderHeader.OrderStatus == SD.StatusInProcess)
 								{
