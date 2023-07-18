@@ -244,7 +244,6 @@
 							{
 								if (Model.OrderHeader.OrderStatus == SD.StatusApproved)
 								{
-									<input type="submit" asp-action="StartProcessing" class="btn btn-primary form-control my-1" value="Start Processing" />
 								}
 								if (Model.OrderHeader.OrderStatus == SD.StatusInProcess)
 								{
@@ -254,7 +253,7 @@
 								
 								@if (Model.OrderHeader.OrderStatus != SD.StatusRefunded &&
 										Model.OrderHeader.OrderStatus != SD.StatusCancelled &&
-								Model.OrderHeader.OrderStatus!=SD.StatusShipped)
+										Model.OrderHeader.OrderStatus!=SD.StatusShipped)
 								{
 									<input type="submit" asp-action="CancelOrder" class="btn btn-danger form-control my-1" value="Cancel Order" />
 								}
@@ -270,26 +269,22 @@
 
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
-<script>
-	function validateInput(){
-		if(document.getElementById("trackingNumber").value==""){
-			Swal.fire({
-			  icon: 'error',
-			  title: 'Oops...',
-			  text: 'Please enter tracking number!',
-			});
-			return false;
+    <partial name="_Notification" />
+
+	<script>
+		function validateInput(){
+			if(document.getElementById("trackingNumber").value==""){
+				toastr.options.positionClass = "toast-bottom-right";
+				toastr.error('Please enter tracking number!');
+				return false;
+			}
+			if(document.getElementById("carrier").value==""){
+				toastr.options.positionClass = "toast-bottom-right";
+				toastr.error('Please enter carrier!');
+				return false;
+			}
+			return true;
 		}
-		if(document.getElementById("carrier").value==""){
-			Swal.fire({
-			  icon: 'error',
-			  title: 'Oops...',
-			  text: 'Please enter carrier!',
-			});
-			return false;
-		}
-		return true;
-	}
-</script>
+	</script>
 
 }
