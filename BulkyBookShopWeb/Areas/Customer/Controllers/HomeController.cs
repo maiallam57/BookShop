@@ -19,7 +19,8 @@ namespace BulkyBookShopWeb.Controllers
             _logger = logger;
             _unitOfWork = unitOfWork;
         }
-
+ 
+        
         public IActionResult Index()
         {
             IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category,CoverType");
@@ -70,16 +71,25 @@ namespace BulkyBookShopWeb.Controllers
             return View();
         }
 
-        public IActionResult Help()
+        
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [Route("/StatusCodeError/{statusCode}")]
+        public IActionResult Error404(int statusCode)
+        {
+            //return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (statusCode == 404)
+            {
+                ViewBag.ErrorMessage = "404 Page Not Found Expception!";
+                return View();
+            }
+            else
+            {
+                return Redirect(nameof(Error500));
+            }
+        }
+        public IActionResult Error500()
         {
             return View();
-        }
-
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
