@@ -5,7 +5,6 @@
     ViewData["ActivePage"] = ManageNavPages.Email;
 }
 
-<h3 class="mt-4">@ViewData["Title"]</h3>
 <partial name="_StatusMessage" for="StatusMessage" />
 <div class="row">
     <div class="col-md-6">
@@ -13,12 +12,12 @@
             <div asp-validation-summary="All" class="text-danger"></div>
             @if (Model.IsEmailConfirmed)
             {
+                 <label asp-for="Email" class="form-label"></label>
                 <div class="form-group my-2 input-group">
                     <input asp-for="Email" class="form-control" disabled />
                         <div class="input-group-append">
                             <span class="h-100 input-group-text text-success font-weight-bold">✓</span>
                         </div>
-                    <label asp-for="Email" class="form-label"></label>
                 </div>
             }
             else

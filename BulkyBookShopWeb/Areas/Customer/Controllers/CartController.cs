@@ -197,7 +197,7 @@ namespace BulkyBookShopWeb.Controllers
                 }
             }
             _emailSender.SendEmailAsync(orderHeader.ApplicationUser.Email, "Thank you for your order! - Bulky Book",
-                $"<div><h2><strong>Dear,{orderHeader.ApplicationUser.Name}</strong></h2><h3>New Order Has been Created..</h3><h4>Total Price: {orderHeader.OrderTotal}<br/>Status: {orderHeader.PaymentStatus}</h4><br/><h6><strong>Thank you for using Bulky Book!</strong></h6><br/><h6>Best regards,<br/>Bukly Book Team</h6></div>");
+                $"<div><h2><strong>Dear,{orderHeader.ApplicationUser.Name}</strong></h2><h3>New Order Has been Created..</h3><h4>Total Price: {orderHeader.OrderTotal.ToString("c")}<br/>Payment Status: {orderHeader.PaymentStatus}<br/>Order Status: {orderHeader.OrderStatus}</h4><br/><h5><strong>Thank you for using Bulky Book!</strong</h5><br/>Best regards,<br/>Bukly Book Team</h5></div>");
 
 
             List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId ==

@@ -18,12 +18,12 @@ namespace BulkyBookShopWeb.Areas.Identity.Pages.Account.Manage
 {
     public class IndexModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
         public IndexModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -90,7 +90,7 @@ namespace BulkyBookShopWeb.Areas.Identity.Pages.Account.Manage
                 City = user.City,
                 State = user.State,
                 PostalCode = user.PostalCode
-        };
+            };
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -101,7 +101,7 @@ namespace BulkyBookShopWeb.Areas.Identity.Pages.Account.Manage
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            await LoadAsync((ApplicationUser)user);
+            await LoadAsync(user);
             return Page();
         }
 
@@ -115,19 +115,51 @@ namespace BulkyBookShopWeb.Areas.Identity.Pages.Account.Manage
 
             if (!ModelState.IsValid)
             {
-                await LoadAsync((ApplicationUser)user);
+                await LoadAsync(user);
                 return Page();
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var name = user.Name;
+            var StreetAddress = user.StreetAddress;
+            var PostalCode = user.PostalCode;
+            var City = user.City;
+            var State = user.State;
+
             if (Input.PhoneNumber != phoneNumber)
             {
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
+                
                 if (!setPhoneResult.Succeeded)
                 {
                     StatusMessage = "Unexpected error when trying to set phone number.";
                     return RedirectToPage();
                 }
+            }
+            if (Input.Name != name)
+            {
+                user.Name = Input.Name;
+                await _userManager.UpdateAsync(user);
+            }
+            if (Input.StreetAddress != StreetAddress)
+            {
+                user.StreetAddress = Input.StreetAddress;
+                await _userManager.UpdateAsync(user);
+            }
+            if (Input.PostalCode != PostalCode)
+            {
+                user.PostalCode = Input.PostalCode;
+                await _userManager.UpdateAsync(user);
+            }
+            if (Input.City != City)
+            {
+                user.City = Input.City;
+                await _userManager.UpdateAsync(user);
+            }
+            if (Input.State != State)
+            {
+                user.State = Input.State;
+                await _userManager.UpdateAsync(user);
             }
 
             await _signInManager.RefreshSignInAsync(user);

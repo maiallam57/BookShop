@@ -10,7 +10,7 @@ namespace BulkyBookShop.Utility
     {
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            var fromMail = "maimallam57@outlook.com";
+            var fromMail = "maimallam@outlook.com";
             var fromPassword = "maiMaiallam57";
 
             var message = new MailMessage();
@@ -21,6 +21,7 @@ namespace BulkyBookShop.Utility
             message.Body = $"<html><body> {htmlMessage}</body></html>";
             message.IsBodyHtml = true;
 
+            
             var smtpClient = new SmtpClient("smtp-mail.outlook.com")
             {
                 Port = 587,
@@ -28,6 +29,7 @@ namespace BulkyBookShop.Utility
                 EnableSsl = true,
             };
             smtpClient.Send(message);
+           
         }
     }
 }
