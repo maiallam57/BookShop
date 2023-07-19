@@ -1,10 +1,25 @@
 ﻿@page
 @model AccessDeniedModel
 @{
-    ViewData["Title"] = "Access denied";
+    ViewData["Title"] = "Access Denied";
 }
 
 <header>
-    <h1 class="text-danger mt-4">@ViewData["Title"]</h1>
-    <p class="text-danger">You do not have access to this resource.</p>
+    <div class="text-center">
+         <div class="alert mt-4">
+             <br />
+             <br />
+            <svg style="fill: #DC3545;" xmlns="http://www.w3.org/2000/svg" width="300" height="300" fill="currentColor" class="bi bi-exclamation-octagon-fill" viewBox="0 0 16 16">
+              <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </svg>
+        </div>
+        <h1 class="text-primary mt-4">We are Sorry...</h1>
+
+        <p class="text-primary my-4">The page you're trying to access has restricted access.<br />Please refer to your system administrator</p>
+
+        <br />
+        <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-primary" style="width:300px;">Back Home</a>
+        <br />
+
+    </div>
 </header>

@@ -28,19 +28,20 @@
             <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
         </li>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Content Management</a>
-          <div class="dropdown-menu bg-light">
-            <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Categories</a>
-            <a class="dropdown-item" asp-area="Admin" asp-controller="CoverType" asp-action="Index">CoverTypes</a>
-            <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Products</a>
-            <a class="dropdown-item" asp-area="Admin" asp-controller="Company" asp-action="Index">Companies</a>
+        @if (User.IsInRole(SD.Role_Admin))
+        {
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Content Management</a>
+              <div class="dropdown-menu bg-light">
+                <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Categories</a>
+                <a class="dropdown-item" asp-area="Admin" asp-controller="CoverType" asp-action="Index">CoverTypes</a>
+                <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Products</a>
+                <a class="dropdown-item" asp-area="Admin" asp-controller="Company" asp-action="Index">Companies</a>
            
-            <div class="dropdown-divider"></div>
-         
-        </div>
-
-        </li>
+                <div class="dropdown-divider"></div>
+              </div>
+            </li>
+        }
                 <li class="nav-item">
 			<a class=nav-link asp-area="Admin" asp-controller="Order" asp-action="Index">
                 Manage Orders

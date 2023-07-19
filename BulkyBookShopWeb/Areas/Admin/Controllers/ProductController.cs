@@ -2,6 +2,8 @@
 using BulkyBookShop.DataAccess.Repository.IRepository;
 using BulkyBookShop.Models;
 using BulkyBookShop.Models.ViewModels;
+using BulkyBookShop.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
@@ -9,6 +11,8 @@ using Newtonsoft.Json;
 namespace BulkyBookShopWeb.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
+
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

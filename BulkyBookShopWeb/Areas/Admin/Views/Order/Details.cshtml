@@ -196,8 +196,11 @@
 									<input asp-for="OrderHeader.PaymentStatus" type="text" readonly class="form-control" />
 								</div>
 							</div>
-							<input type="submit" asp-action="UpdateOrderDetail" class="btn btn-warning form-control mt-4 mb-1" value="Update Order Details" />
-							
+							@if (Model.OrderHeader.OrderStatus != SD.StatusCancelled &&
+										Model.OrderHeader.OrderStatus!=SD.StatusShipped)
+							{
+								<input type="submit" asp-action="UpdateOrderDetail" class="btn btn-warning form-control mt-4 mb-1" value="Update Order Details" />
+							}
 
 
 						</div>
