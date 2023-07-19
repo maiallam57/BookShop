@@ -3,6 +3,7 @@ using BulkyBookShop.Models;
 using BulkyBookShop.Models.ViewModels;
 using BulkyBookShop.Utility;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Stripe.Checkout;
 using System.Diagnostics;
@@ -15,11 +16,13 @@ namespace BulkyBookShopWeb.Controllers
     public class CartController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IEmailSender _emailSender;
         [BindProperty]
         public ShoppingCartVM ShoppingCartVM { get; set; }
-        public CartController(IUnitOfWork unitOfWork)
+        public CartController(IUnitOfWork unitOfWork, IEmailSender emailSender)
         {
             _unitOfWork = unitOfWork;
+            _emailSender = emailSender;
         }
         public IActionResult Index()
         {
@@ -193,7 +196,10 @@ namespace BulkyBookShopWeb.Controllers
                     _unitOfWork.Save();
                 }
             }
-            
+            _emailSender.SendEmailAsync(orderHeader.ApplicationUser.Email, "Thank you for your order! - Bulky Book",
+                $"<div><h2><strong>Dear,{orderHeader.ApplicationUser.Name}</strong></h2><h3>New Order Has been Created..</h3><h4>Total Price: {orderHeader.OrderTotal}<br/>Status: {orderHeader.PaymentStatus}</h4><br/><h6><strong>Thank you for using Bulky Book!</strong></h6><br/><h6>Best regards,<br/>Bukly Book Team</h6></div>");
+
+
             List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId ==
             orderHeader.ApplicationUserId).ToList();
 

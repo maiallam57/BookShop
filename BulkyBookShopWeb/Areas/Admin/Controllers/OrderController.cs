@@ -88,6 +88,7 @@ namespace BulkyBookShopWeb.Areas.Admin.Controllers
             var service = new SessionService();
             Session session = service.Create(options);
             _unitOfWork.OrderHeader.UpdateStripePaymentId(OrderVM.OrderHeader.Id, session.Id, session.PaymentIntentId);
+
             _unitOfWork.Save();
             Response.Headers.Add("Location", session.Url);
             return new StatusCodeResult(303);
