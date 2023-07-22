@@ -24,7 +24,7 @@ namespace BulkyBookShop.Models
         public string? PostalCode { get; set; }
 
         [Display(Name = "Phone Number")]
-        [MinLength(11), MaxLength(11)]
+        [DataType(DataType.PhoneNumber)]
         public string? PhoneNumber { get; set; }
         
     }

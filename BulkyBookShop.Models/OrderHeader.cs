@@ -35,6 +35,7 @@ namespace BulkyBookShop.Models
         public string? PaymentIntentId { get; set; }
 
         [Required]
+        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
         [Required]
         public string StreetAddress { get; set; }

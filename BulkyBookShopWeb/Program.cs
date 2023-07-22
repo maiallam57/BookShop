@@ -27,7 +27,6 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
-
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
 builder.Services.AddAuthentication().AddFacebook(options =>
@@ -64,6 +63,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseStatusCodePagesWithRedirects("/StatusCodeError/{0}");
 app.UseStaticFiles();
 
