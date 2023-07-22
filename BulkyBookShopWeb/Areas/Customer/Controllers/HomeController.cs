@@ -79,17 +79,13 @@ namespace BulkyBookShopWeb.Controllers
             //return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
             if (statusCode == 404)
             {
-                ViewBag.ErrorMessage = "404 Page Not Found Expception!";
                 return View();
             }
             else
             {
-                return Redirect(nameof(Error500));
+                return View("Error500");
             }
         }
-        public IActionResult Error500()
-        {
-            return View();
-        }
+
     }
 }
